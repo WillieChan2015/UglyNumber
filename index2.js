@@ -2,7 +2,7 @@
  * @Author: Mr.Chen
  * @Date: 2018-11-25 17:02:21
  * @LastEditors: Mr.Chen
- * @LastEditTime: 2018-11-25 19:48:19
+ * @LastEditTime: 2018-11-25 21:19:17
  * @Description: 丑数，改良版，空间换时间
  */
 
@@ -41,25 +41,29 @@ function getUglyNumber(index) {
   uglyArr.push(1);
 
   let uglyNum = 1;
+  let lastM2Index = 0, lastM3Index = 0, lastM5Index = 0;
   while (uglyNum < index) {
     let m2 = 0, m3 = 0, m5 = 0;
-    for (let i = 0; i < uglyNum; i++) {
+    for (let i = lastM2Index; i < uglyNum; i++) {
       if (uglyArr[i] * 2 > uglyArr[uglyNum - 1]) {
         m2 = uglyArr[i] * 2;
+        lastM2Index = i;
         break;
       }
     }
 
-    for (let i = 0; i < uglyNum; i++) {
+    for (let i = lastM3Index; i < uglyNum; i++) {
       if (uglyArr[i] * 3 > uglyArr[uglyNum - 1]) {
         m3 = uglyArr[i] * 3;
+        lastM3Index = i;
         break;
       }
     }
 
-    for (let i = 0; i < uglyNum; i++) {
+    for (let i = lastM5Index; i < uglyNum; i++) {
       if (uglyArr[i] * 5 > uglyArr[uglyNum - 1]) {
         m5 = uglyArr[i] * 5;
+        lastM5Index = i;
         break;
       }
     }
